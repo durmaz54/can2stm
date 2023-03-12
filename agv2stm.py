@@ -1,10 +1,12 @@
 from enum import Enum
 import can
+import asyncio
 
 #can.send veri gönderme hızı 15kHz = 0.066ms
 
 MYSTDID_for_MotorLeft = 0x17
 MYSTDID_for_MotorRight = 0x16
+MYSTDID_for_Lift = 0x18
 
 class LiftStatus(Enum):
     liftUp = 1
@@ -55,6 +57,7 @@ class AGV2STM():
 
         message = can.Message(arbitration_id=MYSTDID_for_MotorRight, data=bytes(str(motorRight), 'utf-8'), is_extended_id=False)
         self.bus.send(message, timeout= 0.0001)
+
     # buzzer sesi %volume
     def setBuzzer(self, volume: int):
         if(volume > 100):
