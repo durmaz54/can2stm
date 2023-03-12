@@ -31,7 +31,7 @@ async def main() -> None:
         
         while True:
             print("say something")
-            time.sleep(1)
+            await time.sleep(1)
 
 
 if __name__ == "__main__":
