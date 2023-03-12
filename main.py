@@ -1,5 +1,6 @@
 import asyncio
 from typing import List
+import time
 
 import can
 from can.notifier import MessageRecipient
@@ -27,8 +28,10 @@ async def main() -> None:
         # Create Notifier with an explicit loop to use for scheduling of callbacks
         loop = asyncio.get_running_loop()
         notifier = can.Notifier(bus, listeners, loop=loop)
+        
         while True:
-            a = 2+3
+            print("say something")
+            time.sleep(1)
 
 
 if __name__ == "__main__":
