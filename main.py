@@ -26,15 +26,8 @@ async def main() -> None:
         loop = asyncio.get_running_loop()
         notifier = can.Notifier(bus, listeners, loop=loop)
 
-        
-        msg = await reader.get_message()
-        print(msg)
-
         while True:
-            a = 2+3
-
-        notifier.stop()
-
+            await a = 2+3
 
 if __name__ == "__main__":
     asyncio.run(main())
