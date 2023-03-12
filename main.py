@@ -26,11 +26,13 @@ async def main() -> None:
         loop = asyncio.get_running_loop()
         notifier = can.Notifier(bus, listeners, loop=loop)
 
-        while True:
-            msg = await reader.get_message()
-            print(msg)
-
         
+        msg = await reader.get_message()
+        print(msg)
+
+        while true:
+            print("test")
+
         notifier.stop()
 
 
