@@ -1,6 +1,7 @@
 from enum import Enum
 import can
 
+MYSTD_ID = 0x17
 
 class LiftStatus(Enum):
     liftUp = 1
@@ -13,6 +14,7 @@ class LedStatus(Enum):
     taskFinish = 4
     onHold = 5
     error = -1
+
 
 
 class AGV2STM():
