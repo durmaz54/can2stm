@@ -14,7 +14,7 @@ async def main() -> None:
     """The main function that runs in the loop."""
 
     with can.Bus(  # type: ignore
-        interface="virtual", channel="my_channel_0", receive_own_messages=True
+        interface="socketcan", channel="can0", bitrate=250000
     ) as bus:
         reader = can.AsyncBufferedReader()
         logger = can.Logger("logfile.asc")
