@@ -25,23 +25,12 @@ async def main() -> None:
         # Create Notifier with an explicit loop to use for scheduling of callbacks
         loop = asyncio.get_running_loop()
         notifier = can.Notifier(bus, listeners, loop=loop)
-        # Start sending first message
-        bus.send(can.Message(arbitration_id=0))
 
-        print("Bouncing 10 messages...")
-        for _ in range(10):
-            # Wait for next message from AsyncBufferedReader
+        while True:
             msg = await reader.get_message()
-            # Delay response
-            await asyncio.sleep(0.5)
-            msg.arbitration_id += 1
-            bus.send(msg)
+            print(msg)
 
-        # Wait for last message to arrive
-        await reader.get_message()
-        print("Done!")
-
-        # Clean-up
+        
         notifier.stop()
 
 
