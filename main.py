@@ -1,33 +1,21 @@
 import asyncio
-from typing import List
-
 import can
-from can.notifier import MessageRecipient
 
+async def read_can_messages(bus):
+    while True:
+        message = await bus.recv()
+        print(message)
 
-def print_message(msg: can.Message) -> None:
-    """Regular callback function. Can also be a coroutine."""
-    print(msg)
-async def main() -> None:
-    """The main function that runs in the loop."""
+async def main():
+    # CAN bus interface setup
+    bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
-    with can.Bus(  # type: ignore
-        interface="socketcan", channel="can0", bitrate=250000
-    ) as bus:
-        reader = can.AsyncBufferedReader()
-        logger = can.Logger("logfile.asc")
+    # Start async message reading
+    asyncio.create_task(read_can_messages(bus))
 
-        listeners: List[MessageRecipient] = [
-            print_message,  # Callback function
-            reader,  # AsyncBufferedReader() listener
-            logger,  # Regular Listener object
-        ]
-        # Create Notifier with an explicit loop to use for scheduling of callbacks
-        loop = asyncio.get_running_loop()
-        notifier = can.Notifier(bus, listeners, loop=loop)
+    # Keep event loop running indefinitely
+    while True:
+        a = 2+3
 
-        while True:
-            a = 2+3
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     asyncio.run(main())
