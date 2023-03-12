@@ -1,4 +1,5 @@
 from enum import Enum
+import can
 
 
 class LiftStatus(Enum):
@@ -16,9 +17,6 @@ class LedStatus(Enum):
 
 class AGV2STM():
     def __init__(self):
-        
-
-
         self.liftStatus = LiftStatus.liftDown
 
         self.temp1 = None
@@ -30,6 +28,7 @@ class AGV2STM():
         self.motorLiftCurrent = None
         self.battery = 0 # %0 lion= 2.7V  --- %100 lion=4.2V
 
+        self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)  
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
     def read2STM(self):
@@ -45,9 +44,8 @@ class AGV2STM():
 
     # motorlara double değerleri gönderen kod
     def motorWrite(self, motorLeft,motorRight):
-        print(motorRight)
-        print(motorLeft)
-
+        message = can.Message(arbitration_id=0x17, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
+        self.bus.send(message, timeout= 0.0001)
     # buzzer sesi %volume
     def setBuzzer(self, volume: int):
         if(volume > 100):
