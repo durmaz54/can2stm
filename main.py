@@ -30,8 +30,8 @@ async def main() -> None:
         msg = await reader.get_message()
         print(msg)
 
-        while true:
-            print("test")
+        while True:
+            a = 2+3
 
         notifier.stop()
 
