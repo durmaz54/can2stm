@@ -1,12 +1,11 @@
 from enum import Enum
 import can
-import asyncio
-
 #can.send veri gönderme hızı 15kHz = 0.066ms
 
 MYSTDID_for_MotorLeft = 0x17
 MYSTDID_for_MotorRight = 0x16
 MYSTDID_for_Lift = 0x18
+MotorLeft_STDID = 0x10
 
 class LiftStatus(Enum):
     liftUp = 1
@@ -35,11 +34,14 @@ class AGV2STM():
         self.motorLiftCurrent = None
         self.battery = 0 # %0 lion= 2.7V  --- %100 lion=4.2V
 
-        self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)  
+        self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
     def read2STM(self):
-        pass
+        msg = self.bus.recv(0.001)
+        if msg is not None:
+            print(msg)
+
 
     # yükü almak için lift sistemine CAN ile komut gönderir
     def setLiftUp(self):

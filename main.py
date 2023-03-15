@@ -1,38 +1,22 @@
-import asyncio
-from typing import List
 import time
+import threading
+from agv2stm import AGV2STM
 
-import can
-from can.notifier import MessageRecipient
+agv = AGV2STM()
 
-
-def print_message(msg: can.Message) -> None:
-    """Regular callback function. Can also be a coroutine."""
-    print(msg)
-
-
-async def main() -> None:
-    """The main function that runs in the loop."""
-
-    with can.Bus(  # type: ignore
-        interface="socketcan", channel="can0", bitrate=250000
-    ) as bus:
-        reader = can.AsyncBufferedReader()
-        logger = can.Logger("logfile.asc")
-
-        listeners: List[MessageRecipient] = [
-            print_message,  # Callback function
-            reader,  # AsyncBufferedReader() listener
-            logger,  # Regular Listener object
-        ]
-        # Create Notifier with an explicit loop to use for scheduling of callbacks
-        loop = asyncio.get_running_loop()
-        notifier = can.Notifier(bus, listeners, loop=loop)
+def canLoop():
+    while True:
+        agv.read2STM()
         
-        while True:
-            print("say something")
-            await time.sleep(1)
+def loop():
+    while True:
+        print("ros")
+        agv.motorWrite(5.345,7.567)
+        time.sleep(1)
+
+t1 = threading.Thread(target=canLoop)
+t2 = threading.Thread(target=loop)
+t1.start()
+t2.start()
 
 
-if __name__ == "__main__":
-    asyncio.run(main())
