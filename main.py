@@ -11,7 +11,7 @@ def canLoop():
 def loop():
     while True:
         print("ros")
-        agv.motorWrite(5.345,7.567)
+        agv.motorWrite(50,50)
         time.sleep(1)
 
 t1 = threading.Thread(target=canLoop)
