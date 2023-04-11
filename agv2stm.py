@@ -57,8 +57,8 @@ class AGV2STM():
         self.bus.send(message, timeout= CAN_TIMEOUT)
 
 
-        message = can.Message(arbitration_id=MYSTDID_for_MotorRight, data=bytes(str(motorRight), 'utf-8'), is_extended_id=False)
-        self.bus.send(message, timeout= CAN_TIMEOUT)
+        #message = can.Message(arbitration_id=MYSTDID_for_MotorRight, data=bytes(str(motorRight), 'utf-8'), is_extended_id=False)
+        #self.bus.send(message, timeout= CAN_TIMEOUT)
 
     # buzzer sesi %volume
     def setBuzzer(self, volume: int):
