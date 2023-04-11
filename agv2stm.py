@@ -6,7 +6,7 @@ MYSTDID_for_MotorLeft = 0x17
 MYSTDID_for_MotorRight = 0x16
 MYSTDID_for_Lift = 0x18
 MotorLeft_STDID = 0x10
-
+CAN_TIMEOUT = 0.1
 class LiftStatus(Enum):
     liftUp = 1
     liftDown = 0
@@ -54,11 +54,11 @@ class AGV2STM():
     # motorlara double değerleri gönderen kod
     def motorWrite(self, motorLeft,motorRight):
         message = can.Message(arbitration_id=MYSTDID_for_MotorLeft, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
-        self.bus.send(message, timeout= 0.0001)
+        self.bus.send(message, timeout= CAN_TIMEOUT)
 
 
         message = can.Message(arbitration_id=MYSTDID_for_MotorRight, data=bytes(str(motorRight), 'utf-8'), is_extended_id=False)
-        self.bus.send(message, timeout= 0.0001)
+        self.bus.send(message, timeout= CAN_TIMEOUT)
 
     # buzzer sesi %volume
     def setBuzzer(self, volume: int):
