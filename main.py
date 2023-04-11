@@ -14,7 +14,10 @@ def loop():
     while True:
         a+=0.1
         print("ros")
-        agv.motorWrite(a,a)
+        try:
+            agv.motorWrite(a,a)
+        except:
+            print("Hata")
         time.sleep(1)
 
 #t1 = threading.Thread(target=canLoop)
