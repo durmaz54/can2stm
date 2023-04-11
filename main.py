@@ -13,9 +13,9 @@ def loop():
     a=0
     while True:
         a+=0.1
-        print("ros")
         try:
             agv.motorWrite(a,a)
+            print("data send")
         except:
             print("Hata")
         time.sleep(1)
