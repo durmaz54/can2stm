@@ -19,7 +19,7 @@ def loop():
 
 #t1 = threading.Thread(target=canLoop)
 t2 = threading.Thread(target=loop)
-t1.start()
-#t2.start()
+#t1.start()
+t2.start()
 
 
