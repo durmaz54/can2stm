@@ -6,7 +6,7 @@ from agv2stm import AGV2STM
 agv = AGV2STM()
 
 def canLoop():
-    while True:
+    while False:
         agv.read2STM()
         
 def loop():
