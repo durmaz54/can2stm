@@ -2,6 +2,8 @@ import time
 import threading
 from agv2stm import AGV2STM
 
+a=0
+
 agv = AGV2STM()
 
 def canLoop():
@@ -10,8 +12,9 @@ def canLoop():
         
 def loop():
     while True:
+        a+=0.1
         print("ros")
-        agv.motorWrite(50,50)
+        agv.motorWrite(a,a)
         time.sleep(1)
 
 t1 = threading.Thread(target=canLoop)
