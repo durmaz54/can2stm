@@ -7,4 +7,9 @@ while True:
     time.sleep(1)
     motorLeft+=0.1
     message = can.Message(arbitration_id=0x17, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
-    bus.send(message, timeout= 0.1)
+    try:
+        bus.send(message, timeout= 0.1)
+    except e:
+        print(e)
+        print("------------------------")
+        print(motorLeft)
