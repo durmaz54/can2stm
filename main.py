@@ -2,7 +2,6 @@ import time
 import threading
 from agv2stm import AGV2STM
 
-a=0
 
 agv = AGV2STM()
 
@@ -11,6 +10,7 @@ def canLoop():
         agv.read2STM()
         
 def loop():
+    a=0
     while True:
         a+=0.1
         print("ros")
