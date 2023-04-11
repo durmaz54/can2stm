@@ -10,6 +10,6 @@ while True:
     try:
         bus.send(message, timeout= 0.1)
     except can.CanOperationError:
-        print(can.CanOperationError)
+        print("canhata")
         print("------------------------")
         print(motorLeft)
