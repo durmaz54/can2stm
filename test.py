@@ -9,7 +9,7 @@ while True:
     message = can.Message(arbitration_id=0x17, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
     try:
         bus.send(message, timeout= 0.1)
-    except e:
-        print(e)
+    except can.CanOperationError:
+        print(can.CanOperationError)
         print("------------------------")
         print(motorLeft)
