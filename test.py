@@ -7,5 +7,6 @@ a = 0
 
 while True:
     time.sleep(1)
-    os.system("cansend can0 017#{}".format(bytes(str(a))))
+    txt = bytes(str(a))
+    os.system("cansend can0 017#{}".format(txt))
     a+=0.3
