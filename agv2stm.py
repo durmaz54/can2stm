@@ -7,6 +7,21 @@ MYSTDID_for_MotorRight = 0x16
 MYSTDID_for_Lift = 0x18
 MotorLeft_STDID = 0x10
 CAN_TIMEOUT = 0.1
+
+id1= "017"
+id2= "016"
+
+def send(id, data):
+    x = str(data)
+    if(len(x)<8):
+        x = x + "0"*(8-len(x))
+    elif (len(x)>8):
+        x = x[0:8]
+    x = bytes(str(x),'utf-8')
+    x = binascii.hexlify(x)
+    os.system("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
+    print("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
+
 class LiftStatus(Enum):
     liftUp = 1
     liftDown = 0
@@ -53,8 +68,10 @@ class AGV2STM():
 
     # motorlara double değerleri gönderen kod
     def motorWrite(self, motorLeft,motorRight):
-        message = can.Message(arbitration_id=MYSTDID_for_MotorLeft, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
-        self.bus.send(message, timeout= CAN_TIMEOUT)
+        #message = can.Message(arbitration_id=MYSTDID_for_MotorLeft, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
+        #self.bus.send(message, timeout= CAN_TIMEOUT)
+        send(id1, motorLeft)
+        send(id2, motorRight)
 
 
         #message = can.Message(arbitration_id=MYSTDID_for_MotorRight, data=bytes(str(motorRight), 'utf-8'), is_extended_id=False)
@@ -78,4 +95,6 @@ class AGV2STM():
     # taskStatWrite(600, 70, "A",) -> 600 saniye, %70 görev tamamlanması, 'A' bölgesine gidiyor,
     def taskStatWrite(self, startSecond: int, taskPerc : int, task: str):
         pass
+
+
 
