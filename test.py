@@ -1,6 +1,7 @@
 import can
 import time
 import os
+import binascii
 
 
 a = 0
