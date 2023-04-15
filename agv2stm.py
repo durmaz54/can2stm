@@ -49,7 +49,7 @@ class AGV2STM():
         self.motorLiftCurrent = None
         self.battery = 0 # %0 lion= 2.7V  --- %100 lion=4.2V
 
-        self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
+        #self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
     def read2STM(self):

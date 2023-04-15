@@ -20,9 +20,9 @@ def loop():
             print("Hata")
         time.sleep(1)
 
-t1 = threading.Thread(target=canLoop)
+#t1 = threading.Thread(target=canLoop)
 t2 = threading.Thread(target=loop)
-t1.start()
+#t1.start()
 t2.start()
 
 
