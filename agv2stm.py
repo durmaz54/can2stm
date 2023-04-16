@@ -64,8 +64,8 @@ class AGV2STM():
 
 
         
-        os.system("cansend can0 {}#{}{}".format(id,str(x, 'utf-8'),str(y, 'utf-8')))
-        print("cansend can0 {}#{}{}".format(id,str(x, 'utf-8'),str(y, 'utf-8')))
+        os.system("cansend can0 {}#{}{}".format(id1,str(x, 'utf-8'),str(y, 'utf-8')))
+        print("cansend can0 {}#{}{}".format(id1,str(x, 'utf-8'),str(y, 'utf-8')))
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
     def read2STM(self):
