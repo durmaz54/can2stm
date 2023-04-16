@@ -44,7 +44,7 @@ class AGV2STM():
 
         #self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
-
+    #dogruuuuu
     def send(self,id, data):
         x = str(data)
         if(len(x)<8):
