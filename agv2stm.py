@@ -46,7 +46,7 @@ class AGV2STM():
 
     #dogruuuuu
     def send(self,data1, data2):
-        x = str(data)
+        x = str(data1)
         y = str(data2)
         if(len(x)<4):
             x = x + "0"*(4-len(x))
