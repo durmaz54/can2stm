@@ -1,5 +1,6 @@
 from enum import Enum
 import can
+import binascii
 #can.send veri gönderme hızı 15kHz = 0.066ms
 
 MYSTDID_for_MotorLeft = 0x17
