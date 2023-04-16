@@ -86,7 +86,7 @@ class AGV2STM():
     def motorWrite(self, motorLeft,motorRight):
         #message = can.Message(arbitration_id=MYSTDID_for_MotorLeft, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
         #self.bus.send(message, timeout= CAN_TIMEOUT)
-        self.send(id1, motorLeft)
+        self.send(motorLeft, motorLeft)
         #self.send(id2, motorRight)
 
 
