@@ -11,16 +11,7 @@ CAN_TIMEOUT = 0.1
 id1= "017"
 id2= "016"
 
-def send(id, data):
-    x = str(data)
-    if(len(x)<8):
-        x = x + "0"*(8-len(x))
-    elif (len(x)>8):
-        x = x[0:8]
-    x = bytes(str(x),'utf-8')
-    x = binascii.hexlify(x)
-    os.system("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
-    print("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
+
 
 class LiftStatus(Enum):
     liftUp = 1
@@ -51,6 +42,18 @@ class AGV2STM():
 
         #self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
+
+    def send(id, data):
+        x = str(data)
+        if(len(x)<8):
+            x = x + "0"*(8-len(x))
+        elif (len(x)>8):
+            x = x[0:8]
+        x = bytes(str(x),'utf-8')
+        x = binascii.hexlify(x)
+        os.system("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
+        print("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
+
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
     def read2STM(self):
         msg = self.bus.recv(0.001)
@@ -70,8 +73,8 @@ class AGV2STM():
     def motorWrite(self, motorLeft,motorRight):
         #message = can.Message(arbitration_id=MYSTDID_for_MotorLeft, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
         #self.bus.send(message, timeout= CAN_TIMEOUT)
-        send(id1, motorLeft)
-        send(id2, motorRight)
+        self.send(id1, motorLeft)
+        #self.send(id2, motorRight)
 
 
         #message = can.Message(arbitration_id=MYSTDID_for_MotorRight, data=bytes(str(motorRight), 'utf-8'), is_extended_id=False)
