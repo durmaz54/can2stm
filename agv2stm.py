@@ -45,16 +45,27 @@ class AGV2STM():
         #self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
     #dogruuuuu
-    def send(self,id, data):
+    def send(self,data1, data2):
         x = str(data)
-        if(len(x)<8):
-            x = x + "0"*(8-len(x))
-        elif (len(x)>8):
-            x = x[0:8]
+        y = str(data2)
+        if(len(x)<4):
+            x = x + "0"*(4-len(x))
+        elif (len(x)>4):
+            x = x[0:4]
         x = bytes(str(x),'utf-8')
         x = binascii.hexlify(x)
-        os.system("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
-        print("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
+
+        if(len(y)<4):
+            y = y + "0"*(4-len(y))
+        elif (len(y)>4):
+            y = y[0:4]
+        y = bytes(str(y),'utf-8')
+        y = binascii.hexlify(y)       
+
+
+
+        os.system("cansend can0 {}#{}".format(id,str(x, 'utf-8'),str(y, 'utf-8')))
+        print("cansend can0 {}#{}".format(id,str(x, 'utf-8'),str(y, 'utf-8')))
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
     def read2STM(self):
