@@ -66,8 +66,8 @@ class AGV2STM():
             digits2.append(int(decimal_part_2) % 10)
             decimal_part_2 -= int(decimal_part_2)
 
-        print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
-        print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
+        #print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
+        #print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
 
         if data1 < 0:
             s1 = "{}{}{}{}".format(1,digits1[0],digits1[1],digits1[2]) # 1 ise eksi
