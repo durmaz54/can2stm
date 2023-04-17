@@ -69,15 +69,21 @@ class AGV2STM():
         print("{} {} {}".format(digits2[0],digits2[1],digits2[2]))
 
         if data1 < 0:
-            s1 = "{}{}{}{}".format(1,digits1[0],digits1[1],digits1[2]) # 1 ise eksi
+            s1 = "{}{}{}{}".format("-",digits1[0],digits1[1],digits1[2]) # 1 ise eksi
         else:
             s1 = "{}{}{}{}".format(0,digits1[0],digits1[1],digits1[2]) # 0 ise artı
         if data2 < 0:
-            s2 = "{}{}{}{}".format(1,digits2[0],digits2[1],digits2[2]) # 1 ise eksi
+            s2 = "{}{}{}{}".format("-",digits2[0],digits2[1],digits2[2]) # 1 ise eksi
         else:
             s2 = "{}{}{}{}".format(0,digits2[0],digits2[1],digits2[2]) # 0 ise artı
 
-        os.system("cansend can0 {}#{}{}".format(id1,s1,s2))
+        s1 = bytes(str(s1),'utf-8')
+        s1 = binascii.hexlify(s1)
+        s2 = bytes(str(s2),'utf-8')
+        s2 = binascii.hexlify(s2)
+
+
+        os.system("cansend can0 {}#{}{}".format(id1,str(s1,'utf-8'),str(s2,'utf-8')))
         print("cansend can0 {}#{}{}".format(id1,s1,s2))
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
