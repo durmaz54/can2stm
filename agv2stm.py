@@ -46,26 +46,30 @@ class AGV2STM():
 
     #dogruuuuu
     def send(self,data1, data2):
-        x = str(data1)
-        y = str(data2)
-        if(len(x)<4):
-            x = x + "0"*(4-len(x))
-        elif (len(x)>4):
-            x = x[0:4]
-        x = bytes(str(x),'utf-8')
-        x = binascii.hexlify(x)
-
-        if(len(y)<4):
-            y = y + "0"*(4-len(y))
-        elif (len(y)>4):
-            y = y[0:4]
-        y = bytes(str(y),'utf-8')
-        y = binascii.hexlify(y)       
-
-
+        x = data1*100
+        y =data2*100
         
-        os.system("cansend can0 {}#{}{}".format(id1,str(x, 'utf-8'),str(y, 'utf-8')))
-        print("cansend can0 {}#{}{}".format(id1,str(x, 'utf-8'),str(y, 'utf-8')))
+
+        x_1 = int(str(x)[0])
+        x_2=  int(str(x)[1])
+        x_3=  int(str(x)[2])
+        print("{}--{}--{}".format(str(x_1),str(x_2),str(x_3))
+        y_1 = int(str(y)[0])
+        y_2=  int(str(y)[1])
+        y_3=  int(str(y)[2])
+        print("{}--{}--{}".format(str(y_1),str(y_2),str(y_3))
+        if x < 0:
+            s1 = "{}{}{}{}".format(1,x_1,x_2,x_3) # 1 ise eksi
+        else:
+            s1 = "{}{}{}{}".format(0,x_1,x_2,x_3) # 0 ise artı
+        if y < 0:
+            s2 = "{}{}{}{}".format(1,y_1,y_2,y_3) # 1 ise eksi
+        else:
+            s2 = "{}{}{}{}".format(0,y_1,y_2,y_3) # 0 ise artı
+        
+        os.system("cansend can0 {}#{}{}".format(id1,str(s1, 'utf-8'),str(s2, 'utf-8')))
+
+        print("cansend can0 {}#{}{}".format(id1,str(s1, 'utf-8'),str(s2, 'utf-8')))
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
     def read2STM(self):
