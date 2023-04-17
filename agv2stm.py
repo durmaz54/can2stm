@@ -48,25 +48,28 @@ class AGV2STM():
     def send(self,data1, data2):
         x = data1*100
         y =data2*100
+        digits1 = []
+        digits2 = []
+        while x > 0:
+            digits.append(x % 10)
+            x //= 10
+        digits1.reverse()
+        while y > 0:
+            digits.append(y % 10)
+            y //= 10
+        digits1.reverse()
 
-        y_1 = int(str(y)[0])
-        y_2=  int(str(y)[1])
-        y_3=  int(str(y)[2])        
+        print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
+        print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
 
-        x_1 = int(str(x)[0])
-        x_2=  int(str(x)[1])
-        x_3=  int(str(x)[2])
-
-        #print("{} {} {}".format(str(x_1),str(x_2),str(x_3))
-        #print("{} {} {}".format(str(y_1),str(y_2),str(y_3))
         if data1 < 0:
-            s1 = "{}{}{}{}".format(1,x_1,x_2,x_3) # 1 ise eksi
+            s1 = "{}{}{}{}".format(1,digits1[0],digits1[1],digits1[2]) # 1 ise eksi
         else:
-            s1 = "{}{}{}{}".format(0,x_1,x_2,x_3) # 0 ise artı
+            s1 = "{}{}{}{}".format(0,digits1[0],digits1[1],digits1[2]) # 0 ise artı
         if data2 < 0:
-            s2 = "{}{}{}{}".format(1,y_1,y_2,y_3) # 1 ise eksi
+            s2 = "{}{}{}{}".format(1,digits2[0],digits2[1],digits2[2]) # 1 ise eksi
         else:
-            s2 = "{}{}{}{}".format(0,y_1,y_2,y_3) # 0 ise artı
+            s2 = "{}{}{}{}".format(0,digits2[0],digits2[1],digits2[2]) # 0 ise artı
         
         os.system("cansend can0 {}#{}{}".format(id1,str(s1, 'utf-8'),str(s2, 'utf-8')))
 
