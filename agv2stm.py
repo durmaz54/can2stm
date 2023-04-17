@@ -44,47 +44,17 @@ class AGV2STM():
 
         #self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
-
-    def basamak(self,sayi):
-        if sayi < 0:
-            rslt = []
-            sayi = str(sayi)
-            rslt.append(sayi[1])
-            rslt.append(sayi[3])
-            rslt.append(sayi[4])
-        else:
-            rslt = []
-            sayi = str(sayi)
-            rslt.append(sayi[0])
-            rslt.append(sayi[2])
-            rslt.append(sayi[3])
-        return rslt
-
     #dogruuuuu
-    def send(self,data1, data2):
-        digits1 = self.basamak(data1)
-        digits2 = self.basamak(data2)
-
-        print("{} {} {}".format(digits1[0],digits1[1],digits1[2]))
-        print("{} {} {}".format(digits2[0],digits2[1],digits2[2]))
-
-        if data1 < 0:
-            s1 = "{}{}{}{}".format("-",digits1[0],digits1[1],digits1[2]) # 1 ise eksi
-        else:
-            s1 = "{}{}{}{}".format(0,digits1[0],digits1[1],digits1[2]) # 0 ise artı
-        if data2 < 0:
-            s2 = "{}{}{}{}".format("-",digits2[0],digits2[1],digits2[2]) # 1 ise eksi
-        else:
-            s2 = "{}{}{}{}".format(0,digits2[0],digits2[1],digits2[2]) # 0 ise artı
-
-        s1 = bytes(str(s1),'utf-8')
-        s1 = binascii.hexlify(s1)
-        s2 = bytes(str(s2),'utf-8')
-        s2 = binascii.hexlify(s2)
-
-
-        os.system("cansend can0 {}#{}{}".format(id1,str(s1,'utf-8'),str(s2,'utf-8')))
-        print("cansend can0 {}#{}{}".format(id1,str(s1,'utf-8'),str(s2,'utf-8')))
+    def send(self,id, data):
+        x = str(data)
+        if(len(x)<8):
+            x = x + "0"*(8-len(x))
+        elif (len(x)>8):
+            x = x[0:8]
+        x = bytes(str(x),'utf-8')
+        x = binascii.hexlify(x)
+        os.system("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
+        print("cansend can0 {}#{}".format(id,str(x, 'utf-8')))
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
     def read2STM(self):
