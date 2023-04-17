@@ -12,7 +12,7 @@ def loop():
     a=0
     while True:
         a+=0.01 
-        agv.motorWrite(,a)
+        agv.motorWrite(a,a)
         print("data send")
         time.sleep(1)
 
