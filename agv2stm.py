@@ -46,21 +46,28 @@ class AGV2STM():
 
     #dogruuuuu
     def send(self,data1, data2):
-        x = data1*100
-        y =data2*100
         digits1 = []
         digits2 = []
-        while x > 0:
-            digits.append(x % 10)
-            x //= 10
-        digits1.reverse()
-        while y > 0:
-            digits.append(y % 10)
-            y //= 10
-        digits1.reverse()
+        digits1.append(int(data1))
+        digits2.append(int(data2))
 
-        #print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
-        #print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
+        decimal_part_1 = data1 - int(data1)
+
+        # Ondalık kısım basamakları
+        while decimal_part_1 > 0:
+            decimal_part_1 *= 10
+            digits1.append(int(decimal_part_1) % 10)
+            decimal_part_1 -= int(decimal_part_1)
+
+        decimal_part_2 = data2 - int(data2)
+        # Ondalık kısım basamakları
+        while decimal_part_2 > 0:
+            decimal_part_2 *= 10
+            digits2.append(int(decimal_part_2) % 10)
+            decimal_part_2 -= int(decimal_part_2)
+
+        print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
+        print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
 
         if data1 < 0:
             s1 = "{}{}{}{}".format(1,digits1[0],digits1[1],digits1[2]) # 1 ise eksi
