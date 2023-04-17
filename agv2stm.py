@@ -44,30 +44,51 @@ class AGV2STM():
 
         #self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
+
+    def basamaklar(sayi):
+        if sayi == 0:
+            return [0]
+        # Sayının pozitif veya negatif olduğunu belirleyin.
+        isNegatif = False
+        if sayi < 0:
+            isNegatif = True
+            sayi = abs(sayi)
+
+        # Sayıyı tam kısmı ve ondalık kısmı olarak ayırın.
+        tamKisim = int(sayi)
+        ondalikKisim = sayi - tamKisim
+
+        # Tam kısmın basamaklarını bir dizi olarak saklayın.
+        tamBasamaklar = []
+        while tamKisim > 0:
+            tamBasamaklar.append(tamKisim % 10)
+            tamKisim = tamKisim // 10
+        tamBasamaklar.reverse()
+
+        # Ondalık kısmın basamaklarını bir dizi olarak saklayın.
+        ondalikBasamaklar = []
+        while ondalikKisim > 0:
+            ondalikKisim = round(ondalikKisim, 10)  # Küçük hataları önlemek için yuvarla
+            ondalikKisim *= 10
+            ondalikBasamaklar.append(int(ondalikKisim) % 10)
+            ondalikKisim -= int(ondalikKisim)
+        if len(ondalikBasamaklar) == 0:  # Eğer ondalık kısım yoksa, 0 ekle.
+            ondalikBasamaklar.append(0)
+
+        # Negatif sayılarda ilk basamak eksi işaretidir.
+        if isNegatif:
+            tamBasamaklar.insert(0, "-")
+
+        # Tam ve ondalık basamaklarını birleştirin ve döndürün.
+        return tamBasamaklar + ondalikBasamaklar
+
     #dogruuuuu
     def send(self,data1, data2):
-        digits1 = []
-        digits2 = []
-        digits1.append(int(data1))
-        digits2.append(int(data2))
+        digits1 = basamaklar(data1)
+        digits2 = basamaklar(data2)
 
-        decimal_part_1 = data1 - int(data1)
-
-        # Ondalık kısım basamakları
-        while decimal_part_1 >= 0:
-            decimal_part_1 *= 10
-            digits1.append(int(decimal_part_1) % 10)
-            decimal_part_1 -= int(decimal_part_1)
-
-        decimal_part_2 = data2 - int(data2)
-        # Ondalık kısım basamakları
-        while decimal_part_2 >= 0:
-            decimal_part_2 *= 10
-            digits2.append(int(decimal_part_2) % 10)
-            decimal_part_2 -= int(decimal_part_2)
-
-        #print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
-        #print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
+        print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
+        print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
 
         if data1 < 0:
             s1 = "{}{}{}{}".format(1,digits1[0],digits1[1],digits1[2]) # 1 ise eksi
