@@ -45,7 +45,7 @@ class AGV2STM():
         #self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
 
-    def basamak(sayi):
+    def basamak(self,sayi):
         if sayi < 0:
             rslt = []
             sayi = str(sayi)
@@ -62,8 +62,8 @@ class AGV2STM():
 
     #dogruuuuu
     def send(self,data1, data2):
-        digits1 = basamak(data1)
-        digits2 = basamak(data2)
+        digits1 = self.basamak(data1)
+        digits2 = self.basamak(data2)
 
         print("{} {} {}".format(digits1[0],digits1[1],digits1[2]))
         print("{} {} {}".format(digits2[0],digits2[1],digits2[2]))
