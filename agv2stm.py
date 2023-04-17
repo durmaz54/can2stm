@@ -45,46 +45,25 @@ class AGV2STM():
         #self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
 
-    def basamaklar(sayi):
-        if sayi == 0:
-            return [0]
-        # Sayının pozitif veya negatif olduğunu belirleyin.
-        isNegatif = False
+
+    def basamak(sayi):
         if sayi < 0:
-            isNegatif = True
-            sayi = abs(sayi)
-
-        # Sayıyı tam kısmı ve ondalık kısmı olarak ayırın.
-        tamKisim = int(sayi)
-        ondalikKisim = sayi - tamKisim
-
-        # Tam kısmın basamaklarını bir dizi olarak saklayın.
-        tamBasamaklar = []
-        while tamKisim > 0:
-            tamBasamaklar.append(tamKisim % 10)
-            tamKisim = tamKisim // 10
-        tamBasamaklar.reverse()
-
-        # Ondalık kısmın basamaklarını bir dizi olarak saklayın.
-        ondalikBasamaklar = []
-        while ondalikKisim > 0:
-            ondalikKisim = round(ondalikKisim, 10)  # Küçük hataları önlemek için yuvarla
-            ondalikKisim *= 10
-            ondalikBasamaklar.append(int(ondalikKisim) % 10)
-            ondalikKisim -= int(ondalikKisim)
-        if len(ondalikBasamaklar) == 0:  # Eğer ondalık kısım yoksa, 0 ekle.
-            ondalikBasamaklar.append(0)
-
-        # Negatif sayılarda ilk basamak eksi işaretidir.
-        if isNegatif:
-            tamBasamaklar.insert(0, "-")
-
-        # Tam ve ondalık basamaklarını birleştirin ve döndürün.
-        return tamBasamaklar + ondalikBasamaklar
+            rslt = []
+            sayi = str(sayi)
+            rslt.append(sayi[1])
+            rslt.append(sayi[3])
+            rslt.append(sayi[4])
+        else:
+            rslt = []
+            sayi = str(sayi)
+            rslt.append(sayi[0])
+            rslt.append(sayi[2])
+            rslt.append(sayi[3])
+        return rslt
 
     #dogruuuuu
     def send(self,data1, data2):
-        digits1 = basamaklar(data1)
+        digits1 = basamak(data1)
         digits2 = basamaklar(data2)
 
         print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
