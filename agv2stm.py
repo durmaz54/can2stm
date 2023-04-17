@@ -56,16 +56,14 @@ class AGV2STM():
         x_1 = int(str(x)[0])
         x_2=  int(str(x)[1])
         x_3=  int(str(x)[2])
+
         print("{} {} {}".format(str(x_1),str(x_2),str(x_3))
-
-
-
         print("{} {} {}".format(str(y_1),str(y_2),str(y_3))
-        if x < 0:
+        if data1 < 0:
             s1 = "{}{}{}{}".format(1,x_1,x_2,x_3) # 1 ise eksi
         else:
             s1 = "{}{}{}{}".format(0,x_1,x_2,x_3) # 0 ise artı
-        if y < 0:
+        if data2 < 0:
             s2 = "{}{}{}{}".format(1,y_1,y_2,y_3) # 1 ise eksi
         else:
             s2 = "{}{}{}{}".format(0,y_1,y_2,y_3) # 0 ise artı
