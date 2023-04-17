@@ -54,14 +54,14 @@ class AGV2STM():
         decimal_part_1 = data1 - int(data1)
 
         # Ondalık kısım basamakları
-        while decimal_part_1 > 0:
+        while decimal_part_1 >= 0:
             decimal_part_1 *= 10
             digits1.append(int(decimal_part_1) % 10)
             decimal_part_1 -= int(decimal_part_1)
 
         decimal_part_2 = data2 - int(data2)
         # Ondalık kısım basamakları
-        while decimal_part_2 > 0:
+        while decimal_part_2 >= 0:
             decimal_part_2 *= 10
             digits2.append(int(decimal_part_2) % 10)
             decimal_part_2 -= int(decimal_part_2)
@@ -78,9 +78,9 @@ class AGV2STM():
         else:
             s2 = "{}{}{}{}".format(0,digits2[0],digits2[1],digits2[2]) # 0 ise artı
         
-        os.system("cansend can0 {}#{}{}".format(id1,str(s1, 'utf-8'),str(s2, 'utf-8')))
+        os.system("cansend can0 {}#{}{}".format(id1,s1,s2))
 
-        print("cansend can0 {}#{}{}".format(id1,str(s1, 'utf-8'),str(s2, 'utf-8')))
+        print("cansend can0 {}#{}{}".format(id1,s1,s2))
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
     def read2STM(self):
