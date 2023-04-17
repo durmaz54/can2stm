@@ -10,9 +10,11 @@ def canLoop():
         
 def loop():
     a=0
+    b=0
     while True:
-        a+=0.01 
-        agv.motorWrite(a,a)
+        a+=0.01
+        b-= 0.02
+        agv.motorWrite(a,b)
         print("data send")
         time.sleep(1)
 
