@@ -59,8 +59,8 @@ class AGV2STM():
             y //= 10
         digits1.reverse()
 
-        print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
-        print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
+        #print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
+        #print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
 
         if data1 < 0:
             s1 = "{}{}{}{}".format(1,digits1[0],digits1[1],digits1[2]) # 1 ise eksi
