@@ -9,11 +9,11 @@ def canLoop():
         agv.read2STM()
         
 def loop():
-    a=0
-    b=0
+    a=0.3
+    b=0.3
     while True:
-        a+=0.01
-        b-= 0.02
+       # a+=0.01
+        #b-= 0.02
         agv.motorWrite(a,b)
         print("data send")
         time.sleep(1)
