@@ -45,7 +45,6 @@ class AGV2STM():
         #self.bus = can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000)
 
 
-
     def basamak(sayi):
         if sayi < 0:
             rslt = []
@@ -64,10 +63,10 @@ class AGV2STM():
     #dogruuuuu
     def send(self,data1, data2):
         digits1 = basamak(data1)
-        digits2 = basamaklar(data2)
+        digits2 = basamak(data2)
 
-        print("{} {} {}".format(digits1[0],digits1[1],digits1[2])
-        print("{} {} {}".format(digits2[0],digits2[1],digits2[2])
+        print("{} {} {}".format(digits1[0],digits1[1],digits1[2]))
+        print("{} {} {}".format(digits2[0],digits2[1],digits2[2]))
 
         if data1 < 0:
             s1 = "{}{}{}{}".format(1,digits1[0],digits1[1],digits1[2]) # 1 ise eksi
@@ -77,9 +76,8 @@ class AGV2STM():
             s2 = "{}{}{}{}".format(1,digits2[0],digits2[1],digits2[2]) # 1 ise eksi
         else:
             s2 = "{}{}{}{}".format(0,digits2[0],digits2[1],digits2[2]) # 0 ise artı
-        
-        os.system("cansend can0 {}#{}{}".format(id1,s1,s2))
 
+        os.system("cansend can0 {}#{}{}".format(id1,s1,s2))
         print("cansend can0 {}#{}{}".format(id1,s1,s2))
 
     # stm32'lerden ısı, akım, batarya ve lift durum bilgilerini okur
