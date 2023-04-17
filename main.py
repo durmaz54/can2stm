@@ -2,7 +2,6 @@ import time
 import threading
 from agv2stm import AGV2STM
 
-
 agv = AGV2STM()
 
 def canLoop():
@@ -13,7 +12,7 @@ def loop():
     a=0
     while True:
         a+=0.01 
-        agv.motorWrite(a,a)
+        agv.motorWrite(,a)
         print("data send")
         time.sleep(1)
 
