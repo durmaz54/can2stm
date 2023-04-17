@@ -48,15 +48,18 @@ class AGV2STM():
     def send(self,data1, data2):
         x = data1*100
         y =data2*100
-        
 
+        y_1 = int(str(y)[0])
+        y_2=  int(str(y)[1])
+        y_3=  int(str(y)[2])        
+        
         x_1 = int(str(x)[0])
         x_2=  int(str(x)[1])
         x_3=  int(str(x)[2])
         print("{}--{}--{}".format(str(x_1),str(x_2),str(x_3))
-        y_1 = int(str(y)[0])
-        y_2=  int(str(y)[1])
-        y_3=  int(str(y)[2])
+
+
+
         print("{}--{}--{}".format(str(y_1),str(y_2),str(y_3))
         if x < 0:
             s1 = "{}{}{}{}".format(1,x_1,x_2,x_3) # 1 ise eksi
