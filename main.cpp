@@ -10,6 +10,13 @@
 #include <linux/can.h>
 #include <linux/can/raw.h>
 #include <unistd.h>
+#include <chrono>
+#include <thread>
+
+using namespace std::chrono_literals;
+
+
+
 
 
 using namespace std;
@@ -52,7 +59,7 @@ while (1)
    memcpy(frame.data, &f, 4);
 
    cout << "data send " << f << endl;
-    usleep(usec);
+    std::this_thread::sleep_for(1000);
 }
 
 
