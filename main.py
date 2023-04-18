@@ -18,7 +18,6 @@ def loop():
     float1 = 3.14
     float2 = 2.71
 
-    msg = can.Message(arbitration_id=0x17, data=data)
     a = int(float1 * 100)
     b = int(float2*100)
     data = bytearray(struct.pack("ii", a,b))
