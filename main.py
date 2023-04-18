@@ -1,13 +1,7 @@
 import can
 import struct
 import threading
-bus = can.interface.Bus(bustype='socketcan', channel='can0')
 
-float1 = 3.14
-float2 = 2.71
-
-data = bytearray(struct.pack("ff", float1, float2))
-msg = can.Message(arbitration_id=0x17, data=data)
 
 
 
@@ -16,6 +10,13 @@ def canLoop():
         agv.read2STM()
         
 def loop():
+    bus = can.interface.Bus(bustype='socketcan', channel='can0')
+
+    float1 = 3.14
+    float2 = 2.71
+
+    data = bytearray(struct.pack("ff", float1, float2))
+    msg = can.Message(arbitration_id=0x17, data=data)
     while True:
         float1 += 0.01
         float2 += 0.02
