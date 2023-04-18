@@ -23,8 +23,8 @@ def loop():
     while True:
         float1 += 0.1
         float2 += 0.2 
-        a = (float1 * 100)
-        b = (float2 * 100)
+        a = int(float1 * 100)
+        b = int(float2 * 100)
         data1 = struct.pack(">i",a)
         data2 = struct.pack(">i",b)
         data = a+b
