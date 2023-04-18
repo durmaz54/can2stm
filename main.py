@@ -29,6 +29,7 @@ def loop():
         b = int(float2*100)
         data = bytearray(struct.pack("ii", a,b))
         msg = can.Message(arbitration_id=0x17, data=data)
+        print("f1 = {} f2={}".format(str(a),str(b)))
         bus.send(msg)
         print(msg)
         time.sleep(1)
