@@ -9,11 +9,13 @@ bus = can.interface.Bus(bustype='socketcan', channel='can0')
 #son
 def send(m1,m2):
     global bus
-    x1 = str(np.int32(m1 * 100))
-    x2 = str(np.int32(m2 * 100))
-    data1 = x1.tobytes()
-    data2 = x2.tobytes()
-    data = data1+data2
+
+    m1 = int(m1 * 100)
+    x = str(m1)
+    x = bytes(str(x),'utf-8')
+    data1 = binascii.hexlify(x)
+
+    data = data1#+data2
     print(data)
     msg = can.Message(arbitration_id=0x17, data=data)
     print("f1 = {} f2={}".format(str(m1),str(m2)))
