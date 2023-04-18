@@ -77,7 +77,7 @@ class AGV2STM():
         #message = can.Message(arbitration_id=MYSTDID_for_MotorLeft, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
         #self.bus.send(message, timeout= CAN_TIMEOUT)
         self.send(id1, motorLeft)
-        sleep(0.1)
+        sleep(0.001)
         self.send(id2, motorRight)
 
 
