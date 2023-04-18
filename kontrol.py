@@ -1,6 +1,10 @@
 import tty
 import termios
 import sys
+from agv2stm import AGV2STM
+
+agv = AGV2STM()
+
 
 # Yön tuşlarına karşılık gelen karakterler
 UP_ARROW = 'w'
@@ -19,16 +23,23 @@ def getch():
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
+x=0
+y=0
 # Sonsuz döngü içinde klavye girdilerini oku
 while True:
     char = getch()
     if char == UP_ARROW:
-        print("Yukarı yön tuşuna basıldı!")
+        x+= 0.01
     elif char == DOWN_ARROW:
-        print("Aşağı yön tuşuna basıldı!")
+        x-= 0.01
     elif char == RIGHT_ARROW:
-        print("Sağ yön tuşuna basıldı!")
+        y+=0.01
     elif char == LEFT_ARROW:
-        print("Sol yön tuşuna basıldı!")
+        y-=0.01
+    elif char== 'q':
+        agv.motorWrite(0.00,0.00)
+        break
     else:
-        print("hata")
+        print("hatali tuş")
+    print("m1={} m2={}".format(str(x-y),str(x+y)))
+    agv.motorWrite(x-y , x+y)
