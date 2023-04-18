@@ -26,6 +26,7 @@ def loop():
         a = np.int32(float1 * 100)
         b = np.int32(float2 * 100)
         data = np.array([a,1],dtype=np.int32).tobytes()
+        print(data)
         msg = can.Message(arbitration_id=0x17, data=data)
         print("f1 = {} f2={}".format(str(a),str(b)))
         bus.send(msg)
