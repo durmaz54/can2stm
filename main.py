@@ -25,7 +25,9 @@ def loop():
         float2 += 0.2 
         a = (float1 * 100)
         b = (float2 * 100)
-        data = struct.pack("ii",a,b)
+        data1 = struct.pack(">i",a)
+        data2 = struct.pack(">i",b)
+        data = a+b
         print(data)
         msg = can.Message(arbitration_id=0x17, data=data)
         print("f1 = {} f2={}".format(str(a),str(b)))
