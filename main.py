@@ -3,6 +3,9 @@ import struct
 import threading
 import time
 
+def send():
+    pass
+
 
 
 def canLoop():
@@ -15,12 +18,12 @@ def loop():
     float1 = 3.14
     float2 = 2.71
 
-    data = bytearray(struct.pack("ff", float1, float2))
+    msg = can.Message(arbitration_id=0x17, data=data)
+    a = int(float1 * 100)
+    b = int(float2*100)
+    data = bytearray(struct.pack("ii", a,b))
     msg = can.Message(arbitration_id=0x17, data=data)
     while True:
-        float1 += 0.01
-        float2 += 0.02
-
         bus.send(msg)
         print(msg)
         time.sleep(1)
@@ -29,5 +32,4 @@ def loop():
 t2 = threading.Thread(target=loop)
 #t1.start()
 t2.start()
-
 
