@@ -40,13 +40,7 @@ for (int8_t  i = 0; i < 8; i++)
 
 float f = 3.14159f;
 
-// create a stringstream object
-std::stringstream ss;
-
-// set the stream to output in hexadecimal format
-ss << std::hex << std::uppercase << std::setfill('0') << std::setw(8) << *(unsigned int*)&f;
-
-frame.data = ss;
+memccpy(frame.data, &ss, 8);
 
 write(s, &frame, sizeof(struct can_frame));
 
