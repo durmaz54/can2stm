@@ -9,7 +9,8 @@
 #include <net/if.h>
 #include <linux/can.h>
 #include <linux/can/raw.h>
-#include "time.h"
+#include <unistd.h>
+
 
 using namespace std;
 int main(){
@@ -47,7 +48,7 @@ while (1)
 {
    write(s, &frame, sizeof(struct can_frame));
    f+=0.1;
-    _sleep(1000);
+    usleep(1000);
 }
 
 
