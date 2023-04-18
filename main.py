@@ -23,6 +23,12 @@ def loop():
     data = bytearray(struct.pack("ii", a,b))
     msg = can.Message(arbitration_id=0x17, data=data)
     while True:
+        float1 += 0.1
+        float2 += 0.2 
+        a = int(float1 * 100)
+        b = int(float2*100)
+        data = bytearray(struct.pack("ii", a,b))
+        msg = can.Message(arbitration_id=0x17, data=data)
         bus.send(msg)
         print(msg)
         time.sleep(1)
