@@ -2,8 +2,10 @@ import can
 import struct
 import threading
 import time
+import numpy as np
 
 def send():
+
     pass
 
 
@@ -18,16 +20,12 @@ def loop():
     float1 = -1.09
     float2 = -1.15
 
-    a = int(float1 * 100)
-    b = int(float2*100)
-    data = bytearray(struct.pack("ii", a,b))
-    msg = can.Message(arbitration_id=0x17, data=data)
     while True:
         float1 += 0.1
         float2 += 0.2 
-        a = int(float1 * 100)
-        b = int(float2*100)
-        data = bytearray(struct.pack("ii", a,b))
+        a = np.int32(float1 * 100)
+        b = np.int32(float2 * 100)
+        data = np.array([a,1]dtype=int32).tobytes()
         msg = can.Message(arbitration_id=0x17, data=data)
         print("f1 = {} f2={}".format(str(a),str(b)))
         bus.send(msg)
