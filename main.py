@@ -32,7 +32,7 @@ def loop():
     float2 = 0
 
     while True:
-        float1 += 0.01
+        float1 -= 0.01
         float2 -= 0.01 
         send(float1,float2)
         time.sleep(0.1)
