@@ -15,10 +15,10 @@ def send(m1,m2):
     data = x+x
     print(data)
     with can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000) as bus2:
+        bus2.flush_tx_buffer()
         msg = can.Message(arbitration_id=0x17, data=data, is_extended_id=False)
         bus2.send(msg)
         print(msg)
-        bus.flush_tx_buffer()
 
     
 
