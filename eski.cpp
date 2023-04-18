@@ -62,29 +62,25 @@ memcpy(&frame.data[4], &c, 4);
         
         // Check if any arrow key is pressed
         if (ch == 'w') {
-            cout << "up" << endl;
              f+=0.01;
             // Up arrow key is pressed
             // do something
         } else if (ch == 's') {
-            cout << "down" << endl;
              f-=0.01;
             // Down arrow key is pressed
             // do something
         } else if (ch == 'a') {
-            cout << "left" << endl;
                     c-=0.01;
 
             // Left arrow key is pressed
             // do something
         } else if (ch == 'd') {
-            cout << "right" << endl;
                     c+=0.01;
         } else if (ch == 'q' || ch == 'Q') {
             cout << "q" << endl;
             f=0.0f;
             c=0.0f;
-            memcpy(frame.data, 0x0000, 8);
+            memcpy(frame.data, &f, 8);
             write(s, &frame, sizeof(struct can_frame));
             break;
         } else {
@@ -92,6 +88,7 @@ memcpy(&frame.data[4], &c, 4);
         }
         float a = f-c;
         float b = f+c;
+        cout << a << "   " << b << endl;
         memcpy(frame.data, &a, 4);
         memcpy(&frame.data[4], &b, 4);
         write(s, &frame, sizeof(struct can_frame));
