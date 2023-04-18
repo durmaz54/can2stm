@@ -10,7 +10,6 @@ bus = can.interface.Bus(bustype='socketcan', channel='can0')
 def send(m1,m2):
     global bus
 
-    m1 = int(m1 * 100)
     x = str(m1)
     x = bytes(str(x),'utf-8')
     print(x)
