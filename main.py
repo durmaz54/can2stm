@@ -18,6 +18,7 @@ def send(m1,m2):
         msg = can.Message(arbitration_id=0x17, data=data, is_extended_id=False)
         bus2.send(msg)
         print(msg)
+    flush_tx_buffer()
 
     
 
