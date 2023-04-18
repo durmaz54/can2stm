@@ -1,7 +1,7 @@
 import time
 import threading
 from agv2stm import AGV2STM
-
+#18 nisan
 agv = AGV2STM()
 
 def canLoop():

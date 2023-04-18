@@ -28,7 +28,7 @@ def getch(timeout=1):
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
-
+#
 x=0
 y=0
 # Sonsuz döngü içinde klavye girdilerini oku
