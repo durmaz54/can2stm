@@ -27,7 +27,7 @@ def loop():
         b = int(float2 * 100)
         data1 = struct.pack(">i",a)
         data2 = struct.pack(">i",b)
-        data = a+b
+        data = data1+data2
         print(data)
         msg = can.Message(arbitration_id=0x17, data=data)
         print("f1 = {} f2={}".format(str(a),str(b)))
