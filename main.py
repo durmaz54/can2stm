@@ -8,6 +8,7 @@ bus = can.interface.Bus(bustype='socketcan', channel='can0')
 
 
 def send(m1,m2):
+    global bus
     m1 = int(float1 * 100)
     m2 = int(float2 * 100)
     data1 = struct.pack("i",m1)
