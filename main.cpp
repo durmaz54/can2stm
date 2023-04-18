@@ -48,6 +48,8 @@ while (1)
 {
    write(s, &frame, sizeof(struct can_frame));
    f+=0.1;
+   memcpy(frame.data, &f, 4);
+
    cout << "data send " << f << endl;
     usleep(1000);
 }
