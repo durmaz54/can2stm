@@ -15,19 +15,19 @@ int main() {
         int ch = getch();
         
         // Check if any arrow key is pressed
-        if (ch == KEY_UP) {
+        if (ch == 'w') {
             cout << "up" << endl;
             // Up arrow key is pressed
             // do something
-        } else if (ch == KEY_DOWN) {
-            cout << "down" << endl;
+        } else if (ch == 's') {
+            cout << "" << endl;
             // Down arrow key is pressed
             // do something
-        } else if (ch == KEY_LEFT) {
+        } else if (ch == 'a') {
             cout << "left" << endl;
             // Left arrow key is pressed
             // do something
-        } else if (ch == KEY_RIGHT) {
+        } else if (ch == 'd') {
             cout << "right" << endl;
             // Right arrow key is pressed
             // do something
