@@ -9,10 +9,10 @@ bus = can.interface.Bus(bustype='socketcan', channel='can0')
 
 def send(m1,m2):
     global bus
-    m1 = int(float1 * 100)
-    m2 = int(float2 * 100)
-    data1 = struct.pack("i",m1)
-    data2 = struct.pack("i",m2)
+    x1 = int(m1 * 100)
+    x2 = int(m2 * 100)
+    data1 = struct.pack("i",x1)
+    data2 = struct.pack("i",x2)
     data = data1+data2
     print(data)
     msg = can.Message(arbitration_id=0x17, data=data)
