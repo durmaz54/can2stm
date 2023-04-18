@@ -33,6 +33,12 @@ frame.can_dlc = 8;
 frame.data[0] = 0x11;
 frame.data[1] = 0x22;
 
+for (int8_t  i = 0; i < 8; i++)
+{
+    frame.data[i] = 0x54;
+}
+
+
 write(s, &frame, sizeof(struct can_frame));
 
 
