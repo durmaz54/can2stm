@@ -33,13 +33,11 @@ while True:
     elif char == DOWN_ARROW:
         x-= 0.01
     elif char == RIGHT_ARROW:
-        y+=0.01
+        y+= 0.01
     elif char == LEFT_ARROW:
-        y-=0.01
+        y -= 0.01
     elif char== 'q':
         agv.motorWrite(0.00,0.00)
         break
-    else:
-        print("hatali tuş")
-    print("m1={} m2={}".format(str(x-y),str(x+y)))
+    print("m1={} m2={}".format(x-y,x+y))
     agv.motorWrite(x-y , x+y)
