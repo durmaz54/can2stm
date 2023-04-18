@@ -62,7 +62,7 @@ while (1)
    memcpy(&frame.data[4], &c, 4);
 
    cout << "data send " << f << endl;
-   sleep(1);
+   sleep(0);
 }
 
 
