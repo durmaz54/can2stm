@@ -14,6 +14,7 @@
 
 using namespace std;
 int main(){
+    useconds_t usec = 1000;
     int s;
 struct sockaddr_can addr;
 struct ifreq ifr;
@@ -39,7 +40,7 @@ for (int8_t  i = 0; i < 8; i++)
     frame.data[i] = 0x54;
 }
 
-float f = 3.14159f;
+float f = -1000f;
 
 memcpy(frame.data, &f, 4);
 
@@ -51,7 +52,7 @@ while (1)
    memcpy(frame.data, &f, 4);
 
    cout << "data send " << f << endl;
-    usleep(1000);
+    usleep(usec);
 }
 
 
