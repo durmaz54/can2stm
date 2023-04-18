@@ -40,7 +40,7 @@ for (int8_t  i = 0; i < 8; i++)
 
 float f = 3.14159f;
 
-memccpy(frame.data, &f, 4);
+memcpy(frame.data, &f, 4);
 
 write(s, &frame, sizeof(struct can_frame));
 
