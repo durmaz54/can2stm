@@ -10,7 +10,7 @@ bus = can.interface.Bus(bustype='socketcan', channel='can0')
 def send(m1,m2):
     global bus
 
-    x = bytes(m1,'utf-8')
+    x = struct.pack('>f',m1)
     print(x)
     data = x#+data2
     print(data)
