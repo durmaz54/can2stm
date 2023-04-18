@@ -23,9 +23,9 @@ def loop():
     while True:
         float1 += 0.1
         float2 += 0.2 
-        a = np.int32(float1 * 100)
-        b = np.int32(float2 * 100)
-        data = np.array([a,1],dtype=np.int32).tobytes()
+        a = (float1 * 100)
+        b = (float2 * 100)
+        data = struct.pack(">i>i",a,b)
         print(data)
         msg = can.Message(arbitration_id=0x17, data=data)
         print("f1 = {} f2={}".format(str(a),str(b)))
