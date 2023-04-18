@@ -13,7 +13,7 @@ def send(m1,m2):
     x2 = np.int32(m2 * 100)
     data1 = x1.tobytes()
     data2 = x2.tobytes()
-    data = data1+data2
+    data = data1#+data2
     print(data)
     msg = can.Message(arbitration_id=0x17, data=data)
     print("f1 = {} f2={}".format(str(m1),str(m2)))
