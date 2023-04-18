@@ -14,10 +14,11 @@ def send(m1,m2):
     print(x)
     data = x+x
     print(data)
-    msg = can.Message(arbitration_id=0x17, data=data)
-    print("f1 = {} f2={}".format(str(m1),str(m2)))
-    bus.send(msg)
-    print(msg)
+    with can.interface.Bus(bustype='socketcan', channel='can0', bitrate=250000) as bus2:
+        msg = can.Message(arbitration_id=0x17, data=data, is_extended_id=False)
+        bus2.send(msg)
+        print(msg)
+
     
 
 def canLoop():
