@@ -34,7 +34,7 @@ def loop():
         float1 += 0.01
         float2 -= 0.01 
         send(float1,float2)
-        time.sleep(1)
+        time.sleep(0.1)
 
 #t1 = threading.Thread(target=canLoop)
 t2 = threading.Thread(target=loop)
