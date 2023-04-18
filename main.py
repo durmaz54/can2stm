@@ -15,8 +15,8 @@ def canLoop():
 def loop():
     bus = can.interface.Bus(bustype='socketcan', channel='can0')
 
-    float1 = 3.14
-    float2 = 2.71
+    float1 = -1.09
+    float2 = -1.15
 
     a = int(float1 * 100)
     b = int(float2*100)
