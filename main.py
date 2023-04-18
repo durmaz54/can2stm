@@ -6,7 +6,7 @@ import numpy as np
 
 bus = can.interface.Bus(bustype='socketcan', channel='can0')
 
-
+#son
 def send(m1,m2):
     global bus
     x1 = long(m1 * 100)
