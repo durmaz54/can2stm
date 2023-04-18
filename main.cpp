@@ -47,16 +47,19 @@ for (int8_t  i = 0; i < 8; i++)
     frame.data[i] = 0x54;
 }
 
-float f = -10.00f;
+float f = 0.0f;
+float c = 0.0f;
 
 memcpy(frame.data, &f, 4);
-
+memcpy(frame.data[4], &c, 4);
 
 while (1)
 {
    write(s, &frame, sizeof(struct can_frame));
-   f+=0.1;
+   f+=0.01;
+   c-=0.01;
    memcpy(frame.data, &f, 4);
+   memcpy(frame.data[4], &c, 4);
 
    cout << "data send " << f << endl;
    sleep(1);
