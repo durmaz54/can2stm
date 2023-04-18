@@ -2,6 +2,7 @@ import tty
 import termios
 import sys
 from agv2stm import AGV2STM
+import select
 
 agv = AGV2STM()
 
@@ -13,15 +14,20 @@ RIGHT_ARROW = 'd'
 LEFT_ARROW = 'a'
 
 # Klavye girdilerini okuyan ve karakteri döndüren fonksiyon
-def getch():
+def getch(timeout=1):
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
         tty.setraw(sys.stdin.fileno())
-        ch = sys.stdin.read(1)
+        [i, o, e] = select.select([sys.stdin.fileno()], [], [], timeout)
+        if i:
+            ch = sys.stdin.read(1)
+        else:
+            ch = None
     finally:
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
+
 
 x=0
 y=0
