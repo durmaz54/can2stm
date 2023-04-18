@@ -2,6 +2,7 @@ from enum import Enum
 import can
 import binascii
 import os
+from time import sleep
 #can.send veri gönderme hızı 15kHz = 0.066ms
 
 MYSTDID_for_MotorLeft = 0x17
@@ -76,6 +77,7 @@ class AGV2STM():
         #message = can.Message(arbitration_id=MYSTDID_for_MotorLeft, data=bytes(str(motorLeft), 'utf-8'), is_extended_id=False)
         #self.bus.send(message, timeout= CAN_TIMEOUT)
         self.send(id1, motorLeft)
+        sleep(0.001)
         self.send(id2, motorRight)
 
 
