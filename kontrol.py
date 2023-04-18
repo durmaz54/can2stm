@@ -3,10 +3,10 @@ import termios
 import sys
 
 # Yön tuşlarına karşılık gelen karakterler
-UP_ARROW = '\x1b[A'
-DOWN_ARROW = '\x1b[B'
-RIGHT_ARROW = '\x1b[C'
-LEFT_ARROW = '\x1b[D'
+UP_ARROW = 'w'
+DOWN_ARROW = 's'
+RIGHT_ARROW = 'd'
+LEFT_ARROW = 'a'
 
 # Klavye girdilerini okuyan ve karakteri döndüren fonksiyon
 def getch():
@@ -31,4 +31,4 @@ while True:
     elif char == LEFT_ARROW:
         print("Sol yön tuşuna basıldı!")
     else:
-        print(char)
+        print("hata")
