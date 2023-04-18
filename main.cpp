@@ -40,7 +40,7 @@ for (int8_t  i = 0; i < 8; i++)
     frame.data[i] = 0x54;
 }
 
-float f = -1000f;
+float f = -10.00f;
 
 memcpy(frame.data, &f, 4);
 
