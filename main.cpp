@@ -59,7 +59,7 @@ while (1)
    memcpy(frame.data, &f, 4);
 
    cout << "data send " << f << endl;
-    nanosleep({0, 1000000}, NULL)
+   sleep(1);
 }
 
 
