@@ -1,6 +1,6 @@
 import can
 import struct
-
+import threading
 bus = can.interface.Bus(bustype='socketcan', channel='can0')
 
 float1 = 3.14
