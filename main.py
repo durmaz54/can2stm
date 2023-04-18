@@ -13,9 +13,8 @@ def send(m1,m2):
     m1 = int(m1 * 100)
     x = str(m1)
     x = bytes(str(x),'utf-8')
-    data1 = binascii.hexlify(x)
-
-    data = data1#+data2
+    print(x)
+    data = x#+data2
     print(data)
     msg = can.Message(arbitration_id=0x17, data=data)
     print("f1 = {} f2={}".format(str(m1),str(m2)))
