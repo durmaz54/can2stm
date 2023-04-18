@@ -1,21 +1,27 @@
-import time
-import threading
-from agv2stm import AGV2STM
-#18 nisan
-agv = AGV2STM()
+import can
+import struct
+
+bus = can.interface.Bus(bustype='socketcan', channel='can0')
+
+float1 = 3.14
+float2 = 2.71
+
+data = bytearray(struct.pack("ff", float1, float2))
+msg = can.Message(arbitration_id=0x17, data=data)
+
+
 
 def canLoop():
     while True:
         agv.read2STM()
         
 def loop():
-    a=0.3
-    b=0.3
     while True:
-       # a+=0.01
-        #b-= 0.02
-        agv.motorWrite(a,b)
-        print("data send")
+        float1 += 0.01
+        float2 += 0.02
+
+        bus.send(msg)
+        print(msg)
         time.sleep(1)
 
 #t1 = threading.Thread(target=canLoop)
