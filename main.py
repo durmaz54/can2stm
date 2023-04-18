@@ -12,7 +12,7 @@ def send(m1,m2):
 
     x = struct.pack('>f',m1)
     print(x)
-    data = x#+data2
+    data = x+x
     print(data)
     msg = can.Message(arbitration_id=0x17, data=data)
     print("f1 = {} f2={}".format(str(m1),str(m2)))
