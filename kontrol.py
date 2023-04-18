@@ -1,18 +1,34 @@
-import msvcrt
+import tty
+import termios
+import sys
 
+# Yön tuşlarına karşılık gelen karakterler
+UP_ARROW = '\x1b[A'
+DOWN_ARROW = '\x1b[B'
+RIGHT_ARROW = '\x1b[C'
+LEFT_ARROW = '\x1b[D'
+
+# Klavye girdilerini okuyan ve karakteri döndüren fonksiyon
+def getch():
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(sys.stdin.fileno())
+        ch = sys.stdin.read(1)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return ch
+
+# Sonsuz döngü içinde klavye girdilerini oku
 while True:
-    # Sonsuz döngüde yön tuşlarını okuyan ve işlem yapan kod
-    if msvcrt.kbhit():
-        key = msvcrt.getch()
-        if key == b'q':
-            break
-        elif key == b'H':
-            print("Yukarı yön tuşuna basıldı.")
-        elif key == b'P':
-            print("Aşağı yön tuşuna basıldı.")
-        elif key == b'M':
-            print("Sağ yön tuşuna basıldı.")
-        elif key == b'K':
-            print("Sol yön tuşuna basıldı.")
-        else:
-            print("Geçersiz tuşa basıldı.")
+    char = getch()
+    if char == UP_ARROW:
+        print("Yukarı yön tuşuna basıldı!")
+    elif char == DOWN_ARROW:
+        print("Aşağı yön tuşuna basıldı!")
+    elif char == RIGHT_ARROW:
+        print("Sağ yön tuşuna basıldı!")
+    elif char == LEFT_ARROW:
+        print("Sol yön tuşuna basıldı!")
+    else:
+        print("Yön tuşlarından birine basılmadı.")
