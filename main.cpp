@@ -38,6 +38,15 @@ for (int8_t  i = 0; i < 8; i++)
     frame.data[i] = 0x54;
 }
 
+float f = 3.14159f;
+
+// create a stringstream object
+std::stringstream ss;
+
+// set the stream to output in hexadecimal format
+ss << std::hex << std::uppercase << std::setfill('0') << std::setw(8) << *(unsigned int*)&f;
+
+frame.data = ss;
 
 write(s, &frame, sizeof(struct can_frame));
 
