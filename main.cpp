@@ -2,6 +2,6 @@
 #include <linux/can.h>
 using namespace std;
 int main(){
-    std::cout << "hii";
+    cout << "hii";
     return 0;
 }
