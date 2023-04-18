@@ -13,7 +13,6 @@
 #include <chrono>
 #include <thread>
 
-using namespace std::chrono_literals;
 
 
 
@@ -21,7 +20,6 @@ using namespace std::chrono_literals;
 
 using namespace std;
 int main(){
-    useconds_t usec = 1000;
     int s;
 struct sockaddr_can addr;
 struct ifreq ifr;
@@ -62,7 +60,6 @@ while (1)
    memcpy(&frame.data[4], &c, 4);
 
    cout << "data send " << f << endl;
-   sleep(0.001);
 }
 
 
