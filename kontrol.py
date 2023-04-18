@@ -31,4 +31,4 @@ while True:
     elif char == LEFT_ARROW:
         print("Sol yön tuşuna basıldı!")
     else:
-        print("Yön tuşlarından birine basılmadı.")
+        print(char)
